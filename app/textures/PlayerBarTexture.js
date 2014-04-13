@@ -1,22 +1,24 @@
 /*
 	Textura para la barra de los jugadores
 	
-	Implements: TextureInterface
+	Extends: Texture
 	
-	Author: Francisco Javier Arribas Fern·ndez
+	Author: Francisco Javier Arribas Fern√°ndez
 	Last update: 2014/03/14
 */
 
-function PlayerBarTexture(opciones){
-	//Implementamos la interfaz de textura
-	var texture_interface=new TextureInterface();
-	for(x in texture_interface)
-		this[x]=texture_interface[x];
+function PlayerBarTexture(id,context,opciones){
+	//Extendemos de la clase Texture
+	var texture=new Texture(id);
+	if("undefined"==typeof texture)
+		return undefined;
+	for(x in texture)
+		this[x]=texture[x];
 	var that=this;
 	
 	//Propiedades
-	this.position={x:100,y:100};
-	this.size={width:30,height:150};
+	this.move(100,100);
+	this.setSize(30,150);
 	this.line_color="black";
 	this.text_color="red";
 	this.text="WOW DOGE!!";
@@ -27,33 +29,37 @@ function PlayerBarTexture(opciones){
 		if("undefined"!=typeof this[x])
 			this[x]=opciones[x];
 	
-	this.render=function(context){
+	//Override
+	this.renderTexture=function(){
+		var position=that.getPosition();
+		var size=that.getSize();
 		//Rectangulo
 			context.beginPath();
 			
 			//Linea horizontal superior
-			context.moveTo(that.position.x,that.position.y+0.5);
-			context.lineTo(that.position.x+that.size.width,that.position.y+0.5);
+			context.moveTo(position.x,position.y+0.5);
+			context.lineTo(position.x+size.width,position.y+0.5);
 			//Linea horizontal inferior
-			context.moveTo(that.position.x,that.position.y+that.size.height-0.5);
-			context.lineTo(that.position.x+that.size.width,that.position.y+that.size.height-0.5);
+			context.moveTo(position.x,position.y+size.height-0.5);
+			context.lineTo(position.x+size.width,position.y+size.height-0.5);
 			//Linea vertical izquierda
-			context.moveTo(that.position.x+0.5,that.position.y);
-			context.lineTo(that.position.x+0.5,that.position.y+that.size.height);
+			context.moveTo(position.x+0.5,position.y);
+			context.lineTo(position.x+0.5,position.y+size.height);
 			//Linea vertical derecha
-			context.moveTo(that.position.x+that.size.width-0.5,that.position.y);
-			context.lineTo(that.position.x+that.size.width-0.5,that.position.y+that.size.height);
+			context.moveTo(position.x+size.width-0.5,position.y);
+			context.lineTo(position.x+size.width-0.5,position.y+size.height);
 			
 			context.strokeStyle = that.line_color;
 			context.stroke();
 		//Texto
-			context.translate(that.position.x+that.size.width/2 ,that.position.y+that.size.height/2);
+			context.translate(position.x+size.width/2 ,position.y+size.height/2);
 			context.rotate((that.orientation=="right"?-1:1)*Math.PI /2);
-			context.font = "bold "+(that.size.width-10)+"px comic-sans";
+			context.font = "bold "+(size.width-10)+"px comic-sans";
 			context.textAlign="center";
 			context.textBaseline="middle";
 			context.fillStyle=that.text_color;
 			context.fillText(that.text,0,0);
 			context.resetTransform();
+		return true;
 	}
 }
