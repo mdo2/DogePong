@@ -18,7 +18,7 @@ function Texture(id){
 			position.x=x;
 			position.y=y;
 			this.need_repaint=true;
-			this.fireOnChangeEvent();
+			//this.fireOnChangeEvent();
 			return this.getPosition();
 		}
 		console.error("Can not move the texture to x:"+x+", y:"+y+" because this coordinates are not correct.");
@@ -33,7 +33,7 @@ function Texture(id){
 			size.width=w;
 			size.height=h;
 			this.need_repaint=true;
-			this.fireOnChangeEvent();
+			//this.fireOnChangeEvent();
 			return this.getSize();
 		}
 		console.error("Can not set the texture size to width:"+w+", height:"+h+" because this proportions are not correct.");

@@ -9,6 +9,7 @@
 // {
 	//Parametros de inicializacion
 	var canvas_id="dogepong_canvas";
+	var global_refresh_time=25;
 	
 	//Juego
 	var canvas = document.getElementById(canvas_id);
@@ -21,7 +22,7 @@
 	bg.addPlayerBar(barra1,"left");
 	bg.addPlayerBar(barra2,"right");
 	
-	var dogeball=new DogeBall("dogeball","imgs/doge_disk49.png",context);
+	var dogeball=new DogeBall("dogeball","imgs/doge_disk49.png",context,global_refresh_time);
 	bg.setDogeBall(dogeball);
 // }
 // GoDogePong();

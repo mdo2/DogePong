@@ -33,6 +33,6 @@ function Battleground(context){
 		return false;
 	};
 	this.renderBattleground=function(){
-		background.render(context);
+		background.render();
 	};
 }

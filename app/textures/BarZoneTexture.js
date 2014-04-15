@@ -17,8 +17,8 @@ function BarZoneTexture(id,context,opciones){
 	var that=this;
 	
 	//Propiedades
-	this.move(5,0);
-	this.setSize(30,400);
+	this.move(0,0);
+	this.setSize(35,400);
 	this.background_color="silver";
 	
 	//Aplicamos las opciones pasadas como parametro

@@ -17,7 +17,6 @@ function DogeBallTexture(id,context,opciones){
 	var that=this;
 	
 	//Propiedades (Ocupando 30x30)
-	this.move(375,175);
 	this.setSize(50,50);
 	this.img=new Image();
 	this.img.onload=function(){that.render();};
@@ -31,7 +30,6 @@ function DogeBallTexture(id,context,opciones){
 	this.setRadians=function(rd){
 		if("number"==typeof rd && rd>=0 && rd<=Math.PI*2){
 			radians=rd;
-			// that.fireOnChangeEvent();
 			that.renderTexture();
 			return true;
 		}
