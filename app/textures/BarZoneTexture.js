@@ -1,5 +1,5 @@
 /*
-	Textura para el fondo del juego
+	Textura para la zona de una barra de jugador
 	
 	Extends: Texture
 	
@@ -7,7 +7,7 @@
 	Last update: 2014/03/14
 */
 
-function BackgroundTexture(id,context,opciones){
+function BarZoneTexture(id,context,opciones){
 	//Extendemos de la clase Texture
 	var texture=new Texture(id);
 	if("undefined"==typeof texture)
@@ -17,7 +17,8 @@ function BackgroundTexture(id,context,opciones){
 	var that=this;
 	
 	//Propiedades
-	this.setSize(800,400);
+	this.move(5,0);
+	this.setSize(30,400);
 	this.background_color="silver";
 	
 	//Aplicamos las opciones pasadas como parametro
@@ -29,9 +30,11 @@ function BackgroundTexture(id,context,opciones){
 	this.renderTexture=function(){
 		var position=that.getPosition();
 		var size=that.getSize();
+		context.save();
 		//Rectangulo
-			// context.fillStyle=that.background_color;
-			// context.fillRect(position.x,position.y,size.width,size.height);
+			context.fillStyle=that.background_color;
+			context.fillRect(position.x,position.y,size.width,size.height);
+		context.restore();
 		return true;
 	};
 }

@@ -12,12 +12,12 @@ function PlayerBarTexture(id,context,opciones){
 	var texture=new Texture(id);
 	if("undefined"==typeof texture)
 		return undefined;
-	for(x in texture)
+	for(var x in texture)
 		this[x]=texture[x];
 	var that=this;
 	
 	//Propiedades
-	this.move(100,100);
+	this.move(5,125);
 	this.setSize(30,150);
 	this.line_color="black";
 	this.text_color="red";
@@ -33,6 +33,7 @@ function PlayerBarTexture(id,context,opciones){
 	this.renderTexture=function(){
 		var position=that.getPosition();
 		var size=that.getSize();
+		context.save();
 		//Rectangulo
 			context.beginPath();
 			
@@ -51,6 +52,9 @@ function PlayerBarTexture(id,context,opciones){
 			
 			context.strokeStyle = that.line_color;
 			context.stroke();
+			//Relleno del rectangulo
+			context.fillStyle="white";
+			context.fillRect(position.x+1,position.y+1,size.width-2,size.height-2);
 		//Texto
 			context.translate(position.x+size.width/2 ,position.y+size.height/2);
 			context.rotate((that.orientation=="right"?-1:1)*Math.PI /2);
@@ -60,6 +64,7 @@ function PlayerBarTexture(id,context,opciones){
 			context.fillStyle=that.text_color;
 			context.fillText(that.text,0,0);
 			context.resetTransform();
+		context.restore();
 		return true;
-	}
+	};
 }
