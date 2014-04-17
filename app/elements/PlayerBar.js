@@ -1,7 +1,7 @@
 /*
   Clase que define la barra de un jugador
 */
-function PlayerBar(id,type,context){
+function PlayerBar(id,type,context,refresh){
 	var that=this;
 
 	//Propiedades
@@ -12,6 +12,11 @@ function PlayerBar(id,type,context){
 	});
 	if(type=="right")
 		texture.move(765,125);
+	
+	var zone;
+	
+		//Worker
+		var worker;
 
 	//Metodos
 	function checkType(v,t){
@@ -21,48 +26,56 @@ function PlayerBar(id,type,context){
 		return false;
 	}
 	this.setParentTexture=function(pt){
-		if(pt && "function"==typeof pt.addSon)
+		if(pt && "function"==typeof pt.addSon){
+			zone=pt;
 			return pt.addSon(texture);
+		}
 		return false;
 	}
-
-	//Getters y Setters
-	//Text color
-	this.setTextColor=function(tc){
-		if(checkType(tc,"string")){
-			texture.text_color=tc;
-			texture.fireOnChangeEvent();
+	
+		//Controller
+		this.setController=function(ct){
+			worker=new PlayerBarWorker(texture,zone,refresh,ct);
 		}
-		else
-			return false;
-	};
-	this.getTextColor=function(){
-		return texture.text_color;
-	};
+	
+		//Getters y Setters
+		
+			//Text color
+			this.setTextColor=function(tc){
+				if(checkType(tc,"string")){
+					texture.text_color=tc;
+					texture.fireOnChangeEvent();
+				}
+				else
+					return false;
+			};
+			this.getTextColor=function(){
+				return texture.text_color;
+			};
 
-	//Text
-	this.setText=function(t){
-		if(checkType(t,"string")){
-			texture.text=t;
-			texture.fireOnChangeEvent();
-		}
-		else
-			return false;
-	};
-	this.getText=function(){
-		return texture.text;
-	};
+			//Text
+			this.setText=function(t){
+				if(checkType(t,"string")){
+					texture.text=t;
+					texture.fireOnChangeEvent();
+				}
+				else
+					return false;
+			};
+			this.getText=function(){
+				return texture.text;
+			};
 
-	//Orientation
-	this.setOrientation=function(o){
-		if(checkType(o,"string")){
-			texture.orientation=o;
-			texture.fireOnChangeEvent();
-		}
-		else
-			return false;
-	};
-	this.getOrientation=function(){
-		return texture.orientation;
-	};
+			//Orientation
+			this.setOrientation=function(o){
+				if(checkType(o,"string")){
+					texture.orientation=o;
+					texture.fireOnChangeEvent();
+				}
+				else
+					return false;
+			};
+			this.getOrientation=function(){
+				return texture.orientation;
+			};
 }
