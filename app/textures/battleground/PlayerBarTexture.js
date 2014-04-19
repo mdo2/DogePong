@@ -63,7 +63,6 @@ function PlayerBarTexture(id,context,opciones){
 			context.textBaseline="middle";
 			context.fillStyle=that.text_color;
 			context.fillText(that.text,0,0);
-			context.resetTransform();
 		context.restore();
 		return true;
 	};

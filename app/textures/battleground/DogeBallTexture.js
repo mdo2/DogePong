@@ -19,7 +19,7 @@ function DogeBallTexture(id,context,opciones){
 	//Propiedades (Ocupando 30x30)
 	this.setSize(50,50);
 	this.img=new Image();
-	this.img.onload=function(){that.render();};
+	// this.img.onload=function(){that.render();};
 	var radians=0;
 	
 	//Aplicamos las opciones pasadas como parametro

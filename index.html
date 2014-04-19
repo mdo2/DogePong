@@ -1,32 +1,39 @@
-
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Doge Pong!!</title>
 		<meta charset="utf-8" />
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Css de Fixes -->
+		<link rel="stylesheet" type="text/css" href="app/dogepong.css">
 	</head>
 	<body>
-		<canvas id="dogepong_canvas" width="800px" height="400px" style=""></canvas>
+		<canvas id="dogepong_canvas" width="800px" height="400px" contenteditable="true"></canvas>
 		
 		<!-- Textures -->
-		<script src="inc/textures/Texture.js"></script>
-		<script src="app/textures/PlayerBarTexture.js"></script>
-		<script src="app/textures/DogeBallTexture.js"></script>
+		<script src="app/textures/Texture.js"></script>
 		<script src="app/textures/BackgroundTexture.js"></script>
-		<script src="app/textures/BarZoneTexture.js"></script>
-		<script src="app/textures/CenterZoneTexture.js"></script>
+			<!-- Battleground -->
+			<script src="app/textures/battleground/PlayerBarTexture.js"></script>
+			<script src="app/textures/battleground/DogeBallTexture.js"></script>
+			<script src="app/textures/battleground/BarZoneTexture.js"></script>
+			<script src="app/textures/battleground/CenterZoneTexture.js"></script>
 		
 		<!-- Models -->
-		<script src="app/elements/PlayerBar.js"></script>
-		<script src="app/elements/DogeBall.js"></script>
-		<script src="app/elements/Battleground.js"></script>
+			<!-- Battleground -->
+			<script src="app/elements/battleground/PlayerBar.js"></script>
+			<script src="app/elements/battleground/DogeBall.js"></script>
+			<script src="app/elements/battleground/Battleground.js"></script>
 		
 		<!-- Workers -->
-		<script src="app/workers/DogeBallWorker.js"></script>
-		<script src="app/workers/PlayerBarWorker.js"></script>
+			<!-- Battleground -->
+			<script src="app/workers/battleground/DogeBallWorker.js"></script>
+			<script src="app/workers/battleground/PlayerBarWorker.js"></script>
 		
 		<!-- Controllers -->
-		<script src="app/controllers/PlayerBarController.js"></script>
+		<script src="app/controllers/GlobalController.js"></script>
+			<!-- Battleground -->
+			<script src="app/controllers/battleground/PlayerBarController.js"></script>
 		
 		<!-- Main -->
 		<script src="app/dogepong.js"></script>

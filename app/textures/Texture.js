@@ -95,7 +95,7 @@ function Texture(id){
 		if("string"==typeof obj.id && obj.id){
 			sons[obj.id]=obj;
 			sons[obj.id].addChangeListener(this);
-			return this.render();
+			return true;
 		}
 		console.error("Can not add the texture son to '"+this.id+"' because the object given has not a correct id");
 		return false;

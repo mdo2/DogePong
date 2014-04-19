@@ -15,16 +15,12 @@
 	var canvas = document.getElementById(canvas_id);
 	var context = canvas.getContext("2d");
 	
-	var bg=new Battleground(context);
+	var global_controller=new GlobalController(canvas);
 	
-	var barra1=new PlayerBar("barra1","left",context,global_refresh_time);	
-	var barra2=new PlayerBar("barra2","right",context,global_refresh_time);
-	bg.addPlayerBar(barra1,"left");
-	bg.addPlayerBar(barra2,"right");
-	barra1.setController(new PlayerBarController("local:1",document.body));
-	barra2.setController(new PlayerBarController("local:2",document.body));
+	var bg=new Battleground(context,global_refresh_time);
+	// bg.renderBattleground();
+	bg.barra1.setController(new PlayerBarController("local:1",global_controller));
+	bg.barra2.setController(new PlayerBarController("local:2",global_controller));
 	
-	var dogeball=new DogeBall("dogeball","imgs/doge_disk49.png",context,global_refresh_time);
-	bg.setDogeBall(dogeball);
 // }
 // GoDogePong();

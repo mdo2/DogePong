@@ -1,0 +1,11 @@
+/*
+	Hoja de estilo para algunos fixes
+*/
+#dogepong_canvas{
+	cursor:pointer;
+	color: transparent;
+}
+#dogepong_canvas:focus{
+	outline:none;
+	cursor:default;
+}
