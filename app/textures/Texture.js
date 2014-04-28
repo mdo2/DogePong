@@ -107,4 +107,10 @@ function Texture(id){
 		console.error("Can not remove the son texture of '"+this.id+"' because the id given is not correct or the texture do not exist");
 		return false;
 	};
+	this.removeAllSons=function(){
+		for(x in sons)
+			if(sons[x])
+				delete sons[x];
+		sons=[];
+	};
 }

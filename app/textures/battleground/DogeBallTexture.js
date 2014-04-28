@@ -55,7 +55,7 @@ function DogeBallTexture(id,context,opciones){
 			context.lineWidth=2;
 			context.stroke();
 		//Imagen
-			context.drawImage(this.img,-24.5,-24.5);
+			context.drawImage(that.img,-24.5,-24.5);
 		context.restore();
 		return true;
 	};

@@ -3,7 +3,7 @@
 	
 	
 	Author: Francisco Javier Arribas Fernández
-	Last update: 2014/03/28
+	Last update: 2014/04/28
 */
 // function GoDogePong()
 // {
@@ -17,10 +17,12 @@
 	
 	var global_controller=new GlobalController(canvas);
 	
+	var menu=new MainMenu("main_menu","imgs/doge_disk350.png",context,global_controller);
+	menu.renderMenu();
+	
 	var bg=new Battleground(context,global_refresh_time);
-	// bg.renderBattleground();
-	bg.barra1.setController(new PlayerBarController("local:1",global_controller));
-	bg.barra2.setController(new PlayerBarController("local:2",global_controller));
+	// bg.barra1.setController(new PlayerBarController("local:1",global_controller));
+	// bg.barra2.setController(new PlayerBarController("local:2",global_controller));
 	
 // }
 // GoDogePong();
