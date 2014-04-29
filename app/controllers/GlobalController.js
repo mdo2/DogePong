@@ -7,7 +7,7 @@ function GlobalController(source){
 	
 	//Propiedades
 	//Lista global de listeners
-	var events_list=["keydown","keyup","keypress","mousedown","mouseup","click"];
+	var events_list=["keydown","keyup","keypress","mousedown","mousemove","mouseover","mouseup","click"];
 	var listeners={};
 	
 	//Metodos

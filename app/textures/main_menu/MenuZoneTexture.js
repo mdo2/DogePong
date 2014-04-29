@@ -25,6 +25,11 @@ function MenuZoneTexture(id,context,opciones){
 			this[x]=opciones[x];
 	
 	//Override
+	this.onSonChange=function(obj){
+		that.fireOnChangeEvent();
+	};
+	
+	//Override
 	this.renderTexture=function(){
 		var position=that.getPosition();
 		var size=that.getSize();

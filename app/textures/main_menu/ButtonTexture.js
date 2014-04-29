@@ -7,7 +7,7 @@
 	Last update: 2014/03/28
 */
 
-function ButtonTexture(id,context){
+function ButtonTexture(id,context,options){
 	//Extendemos de la clase Texture
 	var texture=new Texture(id);
 	if("undefined"==typeof texture)
@@ -28,12 +28,18 @@ function ButtonTexture(id,context){
 	
 	this.menu_state=0;
 	
-	//Metodos
+	//Aplicamos las opciones pasadas como parametro
+	for(x in options)
+		if("undefined"!=typeof this[x])
+			this[x]=options[x];
+	
+	//Metodos	
 	
 	this.setState=function(new_state){
 		if("number"==typeof new_state && new_state!=state){
 			state=new_state;
-			that.renderTexture();
+			// that.renderTexture();
+			that.fireOnChangeEvent();
 		}
 	};
 	this.getState=function(){
@@ -48,8 +54,8 @@ function ButtonTexture(id,context){
 		var c=context;
 		c.save();
 			c.translate(pos.x,pos.y);
-			var blur=state?1:8;
-			var offset=state?0.25:0;
+			var blur=state?(state==1?1:8):5;
+			var offset=state==1?0.25:0;
 			var fill_grad=c.createLinearGradient(0,0,0,size.height);
 			fill_grad.addColorStop(offset,that.color_inicio);
 			fill_grad.addColorStop(1,that.color_fin);
@@ -72,7 +78,16 @@ function ButtonTexture(id,context){
 				c.shadowOffsetY = 0;
 				c.shadowBlur = blur;
 				c.shadowColor = "black";
-			c.fill();			
+			c.fill();
+			//Texto
+			c.translate(size.width/2 ,size.height/2);
+			c.font = "bold "+(size.height/2)+"px Comic Sans MS";
+			c.textAlign="center";
+			c.textBaseline="middle";
+			c.fillStyle=that.text_color;
+			c.shadowBlur = blur/2;
+			c.fillText(that.text,0,0);
+			
 			
 		c.restore();
 		return true;

@@ -17,8 +17,7 @@
 	
 	var global_controller=new GlobalController(canvas);
 	
-	var menu=new MainMenu("main_menu","imgs/doge_disk350.png",context,global_controller);
-	menu.renderMenu();
+	var app_menu=new AppMenu();
 	
 	var bg=new Battleground(context,global_refresh_time);
 	// bg.barra1.setController(new PlayerBarController("local:1",global_controller));

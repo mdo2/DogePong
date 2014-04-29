@@ -4,6 +4,7 @@
 #dogepong_canvas{
 	cursor:pointer;
 	color: transparent;
+	border: solid 1px silver;
 }
 #dogepong_canvas:focus{
 	outline:none;

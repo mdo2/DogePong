@@ -58,7 +58,7 @@ function PlayerBarTexture(id,context,opciones){
 		//Texto
 			context.translate(position.x+size.width/2 ,position.y+size.height/2);
 			context.rotate((that.orientation=="right"?-1:1)*Math.PI /2);
-			context.font = "bold "+(size.width-10)+"px comic-sans";
+			context.font = "bold "+(size.width-10)+"px Comic Sans MS";
 			context.textAlign="center";
 			context.textBaseline="middle";
 			context.fillStyle=that.text_color;

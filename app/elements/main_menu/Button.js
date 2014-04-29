@@ -1,11 +1,11 @@
 /*
 	Clase que define un boton básico
 */
-function Button(id,context,controller){
+function Button(id,context,controller,options){
 	var that=this;
 	
 	//Propiedades
-	var texture=new ButtonTexture(id,context);
+	var texture=new ButtonTexture(id,context,options);
 	
 	var listeners=[];
 		
@@ -13,22 +13,29 @@ function Button(id,context,controller){
 	function onClick(ev){
 		var pos=texture.getPosition();
 		var size=texture.getSize();
-		if(ev.type=="mouseup")
-			texture.setState(0);
-		else if((ev.offsetX>=pos.x && ev.offsetX<=pos.x+size.width) && (ev.offsetY>=pos.y && ev.offsetY<=pos.y+size.height)){
+		if((ev.offsetX>=pos.x && ev.offsetX<=pos.x+size.width) && (ev.offsetY>=pos.y && ev.offsetY<=pos.y+size.height)){
 			if(ev.type=="click"){
 				//Ejecutamos los listeners
 				for(var cont=0;cont<listeners.length;cont++)
 					if("function"==typeof listeners[cont])
 						listeners[cont](ev);
 			}
-			else
+			else if(ev.type=="mousemove" && !texture.getState())
+				texture.setState(2);
+			else if(ev.type=="mousedown")
 				texture.setState(1);
+			else if(ev.type=="mouseup")
+				texture.setState(2);
+		}
+		else{
+			if(ev.type=="mouseup" || (ev.type=="mousemove" && texture.getState()!=1))
+				texture.setState(0);
 		}
 	}
 	controller.addEventListener("click",onClick);
 	controller.addEventListener("mousedown",onClick);
 	controller.addEventListener("mouseup",onClick);
+	controller.addEventListener("mousemove",onClick);
 	
 	this.addListener=function(handler){
 		if("function"==typeof handler)
