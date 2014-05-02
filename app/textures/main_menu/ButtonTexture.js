@@ -7,7 +7,7 @@
 	Last update: 2014/03/28
 */
 
-function ButtonTexture(id,context,options){
+function ButtonTexture(id,options){
 	//Extendemos de la clase Texture
 	var texture=new Texture(id);
 	if("undefined"==typeof texture)
@@ -17,6 +17,8 @@ function ButtonTexture(id,context,options){
 	var that=this;
 	
 	//Propiedades
+	var context=DogePongGlobals.prototype.context;
+	
 	this.setSize(300,100);
 	this.color_inicio="red";
 	this.color_fin="yellow";
@@ -24,6 +26,7 @@ function ButtonTexture(id,context,options){
 	this.text_color="white";
 	this.border_color="black";
 	this.radius=10;
+	this.back=false;
 	var state=0;
 	
 	this.menu_state=0;
@@ -79,15 +82,31 @@ function ButtonTexture(id,context,options){
 				c.shadowBlur = blur;
 				c.shadowColor = "black";
 			c.fill();
-			//Texto
-			c.translate(size.width/2 ,size.height/2);
-			c.font = "bold "+(size.height/2)+"px Comic Sans MS";
-			c.textAlign="center";
-			c.textBaseline="middle";
+			//Texto o Símbolo de back
 			c.fillStyle=that.text_color;
 			c.shadowBlur = blur/2;
-			c.fillText(that.text,0,0);
-			
+			if(!that.back){
+				c.translate(size.width/2 ,size.height/2);
+				c.font = "bold "+(size.height/2)+"px Comic Sans MS";
+				c.textAlign="center";
+				c.textBaseline="middle";
+				c.fillStyle=that.text_color;
+				c.fillText(that.text,0,0);
+			}
+			else{
+				//Triangulo
+				c.beginPath();
+				c.moveTo(size.width*0.15,size.height*0.5);
+				c.lineTo(size.width*0.4,size.height*0.15);
+				
+				c.lineTo(size.width*0.4,size.height*0.4);
+				c.lineTo(size.width*0.8,size.height*0.4);
+				c.lineTo(size.width*0.8,size.height*0.6);
+				c.lineTo(size.width*0.4,size.height*0.6);
+				
+				c.lineTo(size.width*0.4,size.height*0.85);
+				c.fill();
+			}
 			
 		c.restore();
 		return true;

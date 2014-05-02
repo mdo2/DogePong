@@ -1,14 +1,14 @@
 /*
 	Clase que define la Dogeball
 */
-function DogeBall(id,url,context,refresh){
+function DogeBall(id){
 	var that=this;
 	
 	//Propiedades
+	var refresh=DogePongGlobals.prototype.refresh_time;
 		
 		//Texture
-		var dogeball_texture=new DogeBallTexture(id,context);
-		dogeball_texture.img.src=url;
+		var dogeball_texture=new DogeBallTexture(id);
 		var ball_zone;
 		
 		//Rolling

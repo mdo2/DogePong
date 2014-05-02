@@ -7,7 +7,7 @@
 	Last update: 2014/03/14
 */
 
-function PlayerBarTexture(id,context,opciones){
+function PlayerBarTexture(id,opciones){
 	//Extendemos de la clase Texture
 	var texture=new Texture(id);
 	if("undefined"==typeof texture)
@@ -17,6 +17,8 @@ function PlayerBarTexture(id,context,opciones){
 	var that=this;
 	
 	//Propiedades
+	var context=DogePongGlobals.prototype.context;
+	
 	this.move(5,125);
 	this.setSize(30,150);
 	this.line_color="black";
@@ -58,7 +60,7 @@ function PlayerBarTexture(id,context,opciones){
 		//Texto
 			context.translate(position.x+size.width/2 ,position.y+size.height/2);
 			context.rotate((that.orientation=="right"?-1:1)*Math.PI /2);
-			context.font = "bold "+(size.width-10)+"px Comic Sans MS";
+			context.font = "bold "+(size.width/1.7)+"px Comic Sans MS";
 			context.textAlign="center";
 			context.textBaseline="middle";
 			context.fillStyle=that.text_color;

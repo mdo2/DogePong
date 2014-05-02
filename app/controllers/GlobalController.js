@@ -7,12 +7,33 @@ function GlobalController(source){
 	
 	//Propiedades
 	//Lista global de listeners
-	var events_list=["keydown","keyup","keypress","mousedown","mousemove","mouseover","mouseup","click"];
+	var events_list=[
+		"keydown",
+		"keyup",
+		"keypress",
+		"mousedown",
+		"mousemove",
+		"mouseover",
+		"mouseup",
+		"click",
+		"touchstart",
+		"touchend",
+		"touchcancel",
+		"touchleave",
+		"touchmove"
+		];
 	var listeners={};
 	
 	//Metodos
 	//Nos registramos en el source
 	function fireEvent(ev){
+		ev.preventDefault();
+		//Damos propiedades offsetX y offsetY a los touch events
+		if(ev.type.indexOf("touch")>=0){
+			var el=ev.changedTouches[0];
+			ev.offsetX=el.pageX+ev.layerX;
+			ev.offsetY=el.pageY+ev.layerY;
+		}
 		var type=ev.type;
 		for(var cont=0;cont<listeners[type].length;cont++){
 			var handler=listeners[type][cont];
@@ -24,7 +45,7 @@ function GlobalController(source){
 	for(var cont=0;cont<events_list.length;cont++){
 		var event=events_list[cont];
 		listeners[event]=[];
-		source.addEventListener(event,fireEvent);
+		source.addEventListener(event,fireEvent,false);
 	}
 	
 	this.addEventListener=function(type,handler){
@@ -40,7 +61,7 @@ function GlobalController(source){
 	this.removeEventListener=function(type,handler){
 		var list=listeners[type];
 		if(list){
-			var index=lista.indexOf(handler);
+			var index=list.indexOf(handler);
 			if(index>=0)
 				return delete list[index];
 			console.error("Error removing event handler of type "+type+". The handler given was not on the event list given.");

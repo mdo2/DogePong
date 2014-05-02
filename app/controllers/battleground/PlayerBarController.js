@@ -3,10 +3,12 @@
 	
 	Se configura para recibir los eventos de manera local(teclas) o bien atraves de un socket(mensajes)
 */
-function PlayerBarController(type,source){
+function PlayerBarController(type){
 	that=this;
 	
 	//Propiedades
+	var source=DogePongGlobals.prototype.global_controller;
+	
 	var listeners={
 		"startMove":[],
 		"stopMove":[]

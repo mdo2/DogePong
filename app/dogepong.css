@@ -2,7 +2,6 @@
 	Hoja de estilo para algunos fixes
 */
 #dogepong_canvas{
-	cursor:pointer;
 	color: transparent;
 	border: solid 1px silver;
 }

@@ -3,11 +3,11 @@
 	
 	Extends: Texture
 	
-	Author: Francisco Javier Arribas Fern·ndez
-	Last update: 2014/03/28
+	Author: Francisco Javier Arribas Fern√°ndez
+	Last update: 2014/05/02
 */
 
-function TextTexture(id,context,opciones){
+function TextTexture(id,opciones){
 	//Extendemos de la clase Texture
 	var texture=new Texture(id);
 	if("undefined"==typeof texture)
@@ -17,10 +17,15 @@ function TextTexture(id,context,opciones){
 	var that=this;
 	
 	//Propiedades
+	var context=DogePongGlobals.prototype.context;
+	
 	this.background_color="transparent";
 	// this.setSize(800,400);	
 	this.text="Texto";
 	this.text_color="white";
+	this.start_color="yellow";
+	this.end_color="red";
+	this.gradient=false;
 	
 	//Aplicamos las opciones pasadas como parametro
 	for(x in opciones)
@@ -34,17 +39,23 @@ function TextTexture(id,context,opciones){
 		var rad=that.radius;
 		var c=context;
 		c.save();
-		//Texto
-			c.translate(size.width/2 ,size.height/2);
-			c.font = "bold "+(size.height/2)+"px Comic Sans MS";
+			//Fondo
+			if(that.background_color!="transparent"){
+				c.fillStyle=that.background_color;
+				c.fillRect(pos.x,pos.y,size.width,size.height);
+			}
+			
+			//Texto
+			c.translate(pos.x+size.width/2 ,pos.y+size.height/2);
+			c.font = "bold "+(size.height/1.5)+"px Comic Sans MS";
 			c.textAlign="center";
 			c.textBaseline="middle";
-			
-			var fill_grad=c.createLinearGradient(0,size.height/-2,0,size.height/2);
-			fill_grad.addColorStop(0,"yellow");
-			fill_grad.addColorStop(1,"red");
-			c.fillStyle=fill_grad;
-			// c.fillStyle=that.text_color;
+			if(that.gradient){
+				var fill_grad=c.createLinearGradient(0,size.height/-2,0,size.height/2);
+				fill_grad.addColorStop(0,that.start_color);
+				fill_grad.addColorStop(1,that.end_color);
+			}
+			c.fillStyle=that.gradient?fill_grad:that.text_color;
 			c.fillText(that.text,0,0);
 		c.restore();
 		return true;

@@ -1,7 +1,7 @@
 /*
 	Clase que define el campo de juego
 */
-function Battleground(context,refresh){
+function Battleground(){
 	var that=this;
 	
 	//Propiedades
@@ -14,14 +14,19 @@ function Battleground(context,refresh){
 	this.barra2;
 	this.dogeball;
 	
+	var img=new Image();
+	img.src="imgs/doge_disk49.png";
+	DogePongGlobals.prototype.dogeball_img=img;
+	
+	
 	//Inicializacion de las zonas
-	background=new BackgroundTexture("background",context);
-	left_bar_zone=new BarZoneTexture("left_bar_zone",context);
+	background=new BackgroundTexture("background");
+	left_bar_zone=new BarZoneTexture("left_bar_zone");
 	background.addSon(left_bar_zone);
-	right_bar_zone=new BarZoneTexture("right_bar_zone",context);
+	right_bar_zone=new BarZoneTexture("right_bar_zone");
 	right_bar_zone.move(765,0);
 	background.addSon(right_bar_zone);
-	center_zone=new CenterZoneTexture("center_zone",context);
+	center_zone=new CenterZoneTexture("center_zone");
 	background.addSon(center_zone);
 	
 	//Metodos
@@ -39,13 +44,13 @@ function Battleground(context,refresh){
 	};
 	
 	//Creamos barras
-	this.barra1=new PlayerBar("barra1","left",context,refresh);	
-	this.barra2=new PlayerBar("barra2","right",context,refresh);
+	this.barra1=new PlayerBar("barra1","left");	
+	this.barra2=new PlayerBar("barra2","right");
 	this.addPlayerBar(this.barra1,"left");
 	this.addPlayerBar(this.barra2,"right");
 	
 	//Creamos la bola
-	this.dogeball=new DogeBall("dogeball","imgs/doge_disk49.png",context,refresh);
+	this.dogeball=new DogeBall("dogeball");
 	this.setDogeBall(this.dogeball);
 	
 	this.renderBattleground=function(){		

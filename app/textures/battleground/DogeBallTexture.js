@@ -7,7 +7,7 @@
 	Last update: 2014/03/14
 */
 
-function DogeBallTexture(id,context,opciones){
+function DogeBallTexture(id,opciones){
 	//Extendemos de la clase Texture
 	var texture=new Texture(id);
 	if("undefined"==typeof texture)
@@ -16,9 +16,11 @@ function DogeBallTexture(id,context,opciones){
 		this[x]=texture[x];
 	var that=this;
 	
-	//Propiedades (Ocupando 30x30)
+	//Propiedades 
+	this.img=DogePongGlobals.prototype.dogeball_img;
+	var context=DogePongGlobals.prototype.context;
+	
 	this.setSize(50,50);
-	this.img=new Image();
 	// this.img.onload=function(){that.render();};
 	var radians=0;
 	

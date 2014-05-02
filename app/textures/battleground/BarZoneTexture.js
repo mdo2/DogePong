@@ -7,7 +7,7 @@
 	Last update: 2014/03/14
 */
 
-function BarZoneTexture(id,context,opciones){
+function BarZoneTexture(id,opciones){
 	//Extendemos de la clase Texture
 	var texture=new Texture(id);
 	if("undefined"==typeof texture)
@@ -17,6 +17,8 @@ function BarZoneTexture(id,context,opciones){
 	var that=this;
 	
 	//Propiedades
+	var context=DogePongGlobals.prototype.context;
+	
 	this.move(0,0);
 	this.setSize(35,400);
 	this.background_color="silver";

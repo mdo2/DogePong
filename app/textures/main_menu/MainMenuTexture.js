@@ -7,7 +7,7 @@
 	Last update: 2014/03/28
 */
 
-function MainMenuTexture(id,context,opciones){
+function MainMenuTexture(id,opciones){
 	//Extendemos de la clase Texture
 	var texture=new Texture(id);
 	if("undefined"==typeof texture)
@@ -17,11 +17,12 @@ function MainMenuTexture(id,context,opciones){
 	var that=this;
 	
 	//Propiedades
+	var context=DogePongGlobals.prototype.context;
+	var img=DogePongGlobals.prototype.background_menu_img;
+
 	this.background_color="#e2e2e2";
 	this.setSize(800,400);
-	this.img=new Image();
-	this.img_loaded=false;
-	this.img.onload=function(){that.img_loaded=true;};
+	this.img=img;
 	
 	//Aplicamos las opciones pasadas como parametro
 	for(x in opciones)

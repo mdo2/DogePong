@@ -1,11 +1,13 @@
 /*
-	Clase que define un boton básico
+	Clase que define un boton bÃ¡sico
 */
-function Button(id,context,controller,options){
+function Button(id,options){
 	var that=this;
 	
 	//Propiedades
-	var texture=new ButtonTexture(id,context,options);
+	var controller=DogePongGlobals.prototype.global_controller;
+	
+	var texture=new ButtonTexture(id,options);
 	
 	var listeners=[];
 		
@@ -14,7 +16,8 @@ function Button(id,context,controller,options){
 		var pos=texture.getPosition();
 		var size=texture.getSize();
 		if((ev.offsetX>=pos.x && ev.offsetX<=pos.x+size.width) && (ev.offsetY>=pos.y && ev.offsetY<=pos.y+size.height)){
-			if(ev.type=="click"){
+			if(ev.type=="click" || ev.type=="touchend"){				
+				texture.setState(0);
 				//Ejecutamos los listeners
 				for(var cont=0;cont<listeners.length;cont++)
 					if("function"==typeof listeners[cont])
@@ -22,26 +25,43 @@ function Button(id,context,controller,options){
 			}
 			else if(ev.type=="mousemove" && !texture.getState())
 				texture.setState(2);
-			else if(ev.type=="mousedown")
+			else if(ev.type=="mousedown" || ev.type=="touchstart")
 				texture.setState(1);
 			else if(ev.type=="mouseup")
 				texture.setState(2);
 		}
 		else{
-			if(ev.type=="mouseup" || (ev.type=="mousemove" && texture.getState()!=1))
+			if(ev.type=="mouseup" || ev.type=="touchend" || (ev.type=="mousemove" && texture.getState()!=1))
 				texture.setState(0);
 		}
 	}
-	controller.addEventListener("click",onClick);
-	controller.addEventListener("mousedown",onClick);
-	controller.addEventListener("mouseup",onClick);
-	controller.addEventListener("mousemove",onClick);
-	
+	this.init=function(){
+		controller.addEventListener("click",onClick);
+		controller.addEventListener("mousedown",onClick);
+		controller.addEventListener("mouseup",onClick);
+		controller.addEventListener("mousemove",onClick);
+		controller.addEventListener("touchstart",onClick);
+		controller.addEventListener("touchmove",onClick);
+		controller.addEventListener("touchend",onClick);
+	};
+	this.reset=function(){
+		controller.removeEventListener("click",onClick);
+		controller.removeEventListener("mousedown",onClick);
+		controller.removeEventListener("mouseup",onClick);
+		controller.removeEventListener("mousemove",onClick);
+		controller.removeEventListener("touchstart",onClick);
+		controller.removeEventListener("touchmove",onClick);
+		controller.removeEventListener("touchend",onClick);
+	};
+		
 	this.addListener=function(handler){
 		if("function"==typeof handler)
 			return listeners.push(handler);
 		console.error("Error adding the handler to botton '"+id+"' listeners list.");
 		return false;
+	};
+	this.removeListeners=function(){
+		listeners=[];
 	};
 	
 	//Getters y Setters

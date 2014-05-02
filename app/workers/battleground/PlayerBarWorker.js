@@ -1,10 +1,12 @@
 /*
 	Clase encargada del movimiento de la PlayerBar de un jugador.
 */
-function PlayerBarWorker(texture,zone,refresh,controller){
+function PlayerBarWorker(texture,zone,controller){
 	var that=this;
 	
 	//Propiedades
+	var refresh=DogePongGlobals.prototype.refresh_time;
+	
 	var speed=5;
 	var dir=1;
 	var move_interval_id=0;

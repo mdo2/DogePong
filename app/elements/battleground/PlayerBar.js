@@ -1,11 +1,11 @@
 /*
   Clase que define la barra de un jugador
 */
-function PlayerBar(id,type,context,refresh){
+function PlayerBar(id,type){
 	var that=this;
 
 	//Propiedades
-	var texture=new PlayerBarTexture(id,context,{
+	var texture=new PlayerBarTexture(id,{
 		text_color:(type=="left"?"red":"blue"),
 		text:(type=="left"?"Wow Doge!!":"Such Pong!!"),
 		orientation:(type=="left"?"left":"right")
@@ -34,8 +34,8 @@ function PlayerBar(id,type,context,refresh){
 	}
 	
 		//Controller
-		this.setController=function(ct){
-			worker=new PlayerBarWorker(texture,zone,refresh,ct);
+		this.setController=function(){
+			worker=new PlayerBarWorker(texture,zone);
 		}
 	
 		//Getters y Setters
