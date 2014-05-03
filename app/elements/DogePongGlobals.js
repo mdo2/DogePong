@@ -23,3 +23,5 @@ DogePongGlobals.prototype.refresh_time;
 	
 	//La imagen de la DogeBall
 	DogePongGlobals.prototype.dogeball_img;
+	
+	DogePongGlobals.prototype.battleground;

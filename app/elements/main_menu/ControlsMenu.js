@@ -5,6 +5,8 @@ function ControlsMenu(id){
 	var that=this;
 
 	//Propiedades
+	var refresh=DogePongGlobals.prototype.refresh_time;
+	
 		//Textures
 		var background_texture=new MainMenuTexture(id);
 		
@@ -16,7 +18,6 @@ function ControlsMenu(id){
 			});
 			this.boton_jugar.setSize(150,50);
 			this.boton_jugar.setPosition(325,300);
-			// this.boton_jugar.addListener(function(){});
 			background_texture.addSon(this.boton_jugar.getTexture());
 			
 			//Boton volver
@@ -60,13 +61,41 @@ function ControlsMenu(id){
 			//Jugador 2
 			if(player2=="local"){
 				var controls_texture2=new ControlsTexture("controls2",{
-					dir:"right"
+					dir:"right",
+					keys:["P","L"]
 				});
 				controls_texture2.move(610,150);
 				background_texture.addSon(controls_texture2);
 			}		
 		};
 	
+	this.startGame=function(){
+		that.clearMenu();
+		background_texture.removeSon("boton_jugar");
+		background_texture.removeSon("back_button");
+		that.animateDoge();
+	};
+	this.boton_jugar.addListener(this.startGame);
+	this.animateDoge=function(){
+		var size=350;
+		var radians=0;
+		var aux=Math.PI/180;
+		var coe=75;
+		var roll_coe=360/coe;
+		var reduction_coe=300/coe;
+		var animate_doge_interval=setInterval(function(){
+			size=size-reduction_coe;
+			radians=radians+aux*roll_coe;
+			background_texture.setDoge(radians,size);
+			background_texture.render();
+			if(size<=50){
+				clearInterval(animate_doge_interval);
+				if(that.onAnimationEnds)
+					that.onAnimationEnds();
+			}
+		},refresh);
+	};
+	this.onAnimationEnds;
 	
 	this.renderMenu=function(){
 		this.boton_jugar.init();

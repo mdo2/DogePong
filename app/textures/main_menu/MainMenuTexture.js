@@ -24,16 +24,23 @@ function MainMenuTexture(id,opciones){
 	this.setSize(800,400);
 	this.img=img;
 	
+	this.doge_size;
+	this.rotation;
+	
 	//Aplicamos las opciones pasadas como parametro
 	for(x in opciones)
 		if("undefined"!=typeof this[x])
 			this[x]=opciones[x];
 	
+	this.setDoge=function(rot,size){
+		this.rotation=rot;
+		this.doge_size=size;
+	};
+	
 	//Override
 	this.renderTexture=function(){
 		var position=that.getPosition();
 		var size=that.getSize();
-		
 		//Backgroundvar 
 		fill_grad=context.createLinearGradient(0,0,0,size.height);
 		fill_grad.addColorStop(0,"#f2f2f2");
@@ -41,7 +48,20 @@ function MainMenuTexture(id,opciones){
 		context.fillStyle=fill_grad;
 		// context.fillStyle=that.background_color;
 		context.fillRect(position.x,position.y,size.width,size.height);
-		context.drawImage(that.img,225,25);
+		
+		//Si se le ha aplicado una rotacion o cambio de tamaño
+		if(that.doge_size || that.rotation){
+			context.save();
+			context.translate(size.width/2,size.height/2);
+			context.rotate(that.rotation);
+			var pos_doge_x=-that.doge_size/2;
+			var pos_doge_y=-that.doge_size/2;
+			
+			context.drawImage(that.img,pos_doge_x,pos_doge_y,that.doge_size,that.doge_size);
+			context.restore();		
+		}
+		else
+			context.drawImage(that.img,225,25);
 		return true;
 	};
 }

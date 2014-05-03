@@ -17,11 +17,17 @@ function AppMenu(){
 		var menus={};
 		
 		menus["main_menu"]=new MainMenu("main_menu");
-		menus["main_menu"].boton_local.addListener(function(){that.renderMenu("controls_menu");});
+		
+		//Juego en local
+		menus["main_menu"].boton_local.addListener(function(){
+			menus["controls_menu"].setPlayers("local","local");
+			that.renderMenu("controls_menu");
+		});
 		
 		menus["controls_menu"]=new ControlsMenu("controls_menu");
 		menus["controls_menu"].back_button.addListener(function(){that.renderMenu("main_menu");});
-		menus["controls_menu"].setPlayers("local","local");
+		menus["controls_menu"].onAnimationEnds=function(){console.log("tumadre");};
+		
 		
 		var actual_menu=menus["main_menu"];
 		

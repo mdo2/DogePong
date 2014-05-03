@@ -19,7 +19,7 @@ function ControlsTexture(id,opciones){
 	//Propiedades
 	var context=DogePongGlobals.prototype.context;
 	
-	this.fill_color="tranparent";
+	this.fill_color="rgba(255,255,255,0.6)";
 	this.border_color="#9e9e9e";
 	this.title_color="#9e9e9e";
 	this.keys_color="#9e9e9e";
@@ -87,18 +87,38 @@ function ControlsTexture(id,opciones){
 			c.fill();
 		//Controles
 			//Flechas
-			//Arriba
-			// c.beginPath();
-			// c.moveTo(20,10);
-			// c.lineTo(30,15);
-			
-			// c.lineTo(middle_arrow,15);
-			// c.lineTo(end_arrow,-24);
-			// c.lineTo(end_arrow,-16);
-			// c.lineTo(middle_arrow,-16);
-			
-			// c.lineTo(middle_arrow,-10);
-			// c.fill();
+				//Arriba
+				c.beginPath();
+				c.moveTo(20,10);
+				c.lineTo(30,18);
+				
+				c.lineTo(24,18);
+				c.lineTo(24,28);
+				c.lineTo(16,28);
+				c.lineTo(16,18);
+				
+				c.lineTo(10,18);
+				c.fill();
+				c.fillText(that.keys[0],40,18);
+				
+				//Abajo
+				c.beginPath();
+				c.moveTo(size.width/2+20,28);
+				c.lineTo(size.width/2+30,20);
+				
+				c.lineTo(size.width/2+24,20);
+				c.lineTo(size.width/2+24,10);
+				c.lineTo(size.width/2+16,10);
+				c.lineTo(size.width/2+16,20);
+				
+				c.lineTo(size.width/2+10,20);
+				c.fill();
+				c.fillText(that.keys[1],size.width/2+40,18);
+			//Control táctil
+				c.fillText("Also, you can",5,50);
+				c.fillText("drag the bar",5,75);
+				c.fillText("with your",5,100);
+				c.fillText("finger.",5,125);
 			
 		c.restore();
 		return true;
