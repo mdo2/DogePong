@@ -28,8 +28,6 @@
 	app_menu.start();
 	
 	var bg=new Battleground();
-	// bg.barra1.setController(new PlayerBarController("local:1",global_controller));
-	// bg.barra2.setController(new PlayerBarController("local:2",global_controller));
 	
 // }
 // DogePong();

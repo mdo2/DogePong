@@ -45,7 +45,10 @@ function GlobalController(source){
 	for(var cont=0;cont<events_list.length;cont++){
 		var event=events_list[cont];
 		listeners[event]=[];
-		source.addEventListener(event,fireEvent,false);
+		if(event.indexOf("key")>=0)
+			window.addEventListener(event,fireEvent,false);
+		else
+			source.addEventListener(event,fireEvent,false);
 	}
 	
 	this.addEventListener=function(type,handler){

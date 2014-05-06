@@ -34,8 +34,8 @@ function PlayerBar(id,type){
 	}
 	
 		//Controller
-		this.setController=function(){
-			worker=new PlayerBarWorker(texture,zone);
+		this.setController=function(controller){
+			worker=new PlayerBarWorker(texture,zone,controller);
 		}
 	
 		//Getters y Setters

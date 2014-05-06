@@ -18,6 +18,8 @@ function Battleground(){
 	img.src="imgs/doge_disk49.png";
 	DogePongGlobals.prototype.dogeball_img=img;
 	
+	var global_controller=DogePongGlobals.prototype.global_controller;
+	
 	
 	//Inicializacion de las zonas
 	background=new BackgroundTexture("background");
@@ -55,5 +57,7 @@ function Battleground(){
 	
 	this.renderBattleground=function(){		
 		background.render();
+		that.barra1.setController(new PlayerBarController("local:1",global_controller));
+		that.barra2.setController(new PlayerBarController("local:2",global_controller));
 	};
 }
