@@ -35,6 +35,7 @@ function PlayerBar(id,type){
 	
 		//Controller
 		this.setController=function(controller){
+			controller.setTexture(texture);
 			worker=new PlayerBarWorker(texture,zone,controller);
 		}
 	

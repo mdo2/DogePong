@@ -27,7 +27,7 @@
 	app_menu.init();
 	app_menu.start();
 	
-	var bg=new Battleground();
+	globals.prototype.battleground=new Battleground();
 	
 // }
 // DogePong();

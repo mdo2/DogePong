@@ -30,11 +30,17 @@ function GlobalController(source){
 		ev.preventDefault();
 		//Damos propiedades offsetX y offsetY a los touch events
 		if(ev.type.indexOf("touch")>=0){
-			var el=ev.changedTouches[0];
-			ev.offsetX=el.pageX+ev.layerX;
-			ev.offsetY=el.pageY+ev.layerY;
+			for(var cont=0;cont<ev.changedTouches.length;cont++){
+				var el=ev.changedTouches[cont];
+				ev.offsetX=el.pageX-11;
+				ev.offsetY=el.pageY-11;
+				el.offsetX=el.pageX-11;
+				el.offsetY=el.pageY-11;
+				console.log(el);
+			}
 		}
 		var type=ev.type;
+		// document.getElementById("log").innerHTML=type;
 		for(var cont=0;cont<listeners[type].length;cont++){
 			var handler=listeners[type][cont];
 			if("function"==typeof handler)

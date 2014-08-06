@@ -57,7 +57,7 @@ function Battleground(){
 	
 	this.renderBattleground=function(){		
 		background.render();
-		that.barra1.setController(new PlayerBarController("local:1",global_controller));
-		that.barra2.setController(new PlayerBarController("local:2",global_controller));
+		that.barra1.setController(new PlayerBarController("local:1"));
+		that.barra2.setController(new PlayerBarController("local:2"));
 	};
 }
