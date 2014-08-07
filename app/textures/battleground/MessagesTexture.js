@@ -56,10 +56,9 @@ function MessagesTexture(id,options){
 					len_max=nc;
 			}
 			
-			var size={width:(len_max*this.text_size)+this.text_size,height:(lineas.length*this.text_size)+this.text_size};
+			var size={width:(len_max*this.text_size)+this.text_size,height:(lineas.length*(this.text_size+5))+this.text_size};
 			var pos={x:((this.getSize().width/2)+this.getPosition().x)-(size.width/2),y:((this.getSize().height/2)+this.getPosition().y)-(size.height/2)};
 			var rad=that.radius;
-			console.log(pos);
 			c.save();
 				c.translate(pos.x,pos.y);
 				var blur=5;
@@ -96,9 +95,10 @@ function MessagesTexture(id,options){
 					c.textBaseline="middle";
 					c.fillStyle=that.text_color;
 					c.translate(size.width/2 ,0);
+					c.translate(0 ,-5);
 					for(var cont=0;cont<lineas.length;cont++){
 						var ln=lineas[cont];
-						c.translate(0 ,this.text_size);
+						c.translate(0 ,this.text_size+5);
 						c.fillText(ln.text,0,0);
 					}
 				}

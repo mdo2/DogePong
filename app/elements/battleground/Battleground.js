@@ -11,6 +11,10 @@ function Battleground(){
 	var center_zone;
 	var score_bar;
 	
+	var goles=10;
+	var max_speed=30;
+	var speed_mark=0;
+	
 	this.barra1;
 	this.barra2;
 	this.dogeball;
@@ -81,15 +85,36 @@ function Battleground(){
 		that.barra1.setController(new PlayerBarController("local:1"));
 		that.barra2.setController(new PlayerBarController("local:2"));
 		
-		// this.dogeball.startMoving();
+		that.messages.printMessage("Empieza el partidoPartido a "+goles+" goles",3000,function(){
+			printCountDown(3,function(){
+				//Inicio de la bola
+				initBall();
+				speed_mark=0;
+			});
+		});
 	};
 	this.exitGame=function(){
 		score_bar.back_button.reset();
 		that.dogeball.reset();
 		that.barra1.reset();
 		that.barra2.reset();
+		that.messages.reset();
 		DogePongGlobals.prototype.app_menu.renderMenu("main_menu");
 	};
+	
+	function initBall(){
+		that.dogeball.setMovingSpeed(5);
+		that.dogeball.setRollSense("left");
+		that.dogeball.setRollSpeed(5);
+		that.dogeball.startMoving();
+		that.dogeball.rollTheBall();
+		that.dogeball.setMovingDirection(parseInt(Math.random()*4)+1);
+	}
+	
+	function makeGameHarder(coe){
+		that.dogeball.addRollSpeed(coe);
+		that.dogeball.addMovingSpeed(coe);
+	}
 	
 	this.onBallCollision=function(t,y){
 		var barra=t==1?this.barra1:this.barra2;
@@ -100,7 +125,44 @@ function Battleground(){
 		if(y<y_min || y>y_max){
 			var score=parseInt(score_bar.getScore(t==1?2:1));
 			score_bar.setScore(score+1,t==1?2:1);
+			that.dogeball.reset();
+			that.messages.printMessage("GOOOOOOOOOOOLL!!! del Jugador "+(t==1?2:1),2000,function(){
+				//Comprobamos si hay ganador
+				if(score+1==goles){
+					//Anunciamos ganador y nos salimos al menu principal
+					that.messages.printMessage("Se acabó el juego Ganador: Jugador "+(t==1?2:1),3000,function(){
+						that.exitGame();
+					});
+				}
+				else{
+					//Cuenta atras y sacamos bola
+					printCountDown(3,function(){
+						initBall();
+						var speed_add=parseInt((max_speed-5)/(goles*2));
+						speed_mark+=speed_add;
+						makeGameHarder(speed_mark);
+					});
+				}
+			});
 		}
+		else
+			makeGameHarder(1);
 	};
 	this.dogeball.addCollisionListener(this);
+	
+	//Mensages
+	function printCountDown(seconds,callback){
+		seconds="number"!=typeof seconds?3:seconds;
+		function count(){
+			that.messages.printMessage(seconds,1000,function(){
+				seconds--;
+				if(seconds>0)
+					count();
+				else
+					if(callback)
+						callback();
+			});
+		}
+		count();
+	};
 }

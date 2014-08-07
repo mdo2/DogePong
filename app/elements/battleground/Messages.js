@@ -12,8 +12,8 @@ function Messages(id){
 		//Controller
 		var controller;
 		
-		//Worker
-		var worker;
+		//Id del timeout actual
+		var timeout_id=0;
 
 	//Metodos
 	function checkType(v,t){
@@ -35,15 +35,20 @@ function Messages(id){
 	this.printMessage=function(text,delay,callback){
 		texture.setText(text);
 		delay="number"!=typeof delay?2000:delay;
-		setTimeout(function(){
+		timeout_id=setTimeout(function(){
 			texture.setText("");
+			timeout_id=0;
 			if(callback)
-				callback();
+				callback(timeout_id);
 		},delay);
 	};
 	
 	this.reset=function(){
-		
+		if(timeout_id){
+			texture.setText("");
+			clearTimeout(timeout_id);
+			timeout_id=0;
+		}
 	};
 	
 }

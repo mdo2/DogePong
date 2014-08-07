@@ -37,12 +37,14 @@ function DogeBall(id){
 		}
 		
 		this.reset=function(){
-			this.stopRolling();
-			this.stopMoving();
-			dogeball_texture.move(
-				(ball_zone.getPosition().x+(ball_zone.getSize().width/2))-dogeball_texture.getSize().width/2,
-				(ball_zone.getPosition().y+(ball_zone.getSize().height/2))-dogeball_texture.getSize().height/2-25
-			);
+			that.stopRolling();
+			that.stopMoving();
+			setTimeout(function(){
+				dogeball_texture.move(
+					(ball_zone.getPosition().x+(ball_zone.getSize().width/2))-dogeball_texture.getSize().width/2,
+					(ball_zone.getPosition().y+(ball_zone.getSize().height/2))-dogeball_texture.getSize().height/2-25
+				);
+			},refresh);
 		};
 		
 		//Rolling
@@ -91,6 +93,13 @@ function DogeBall(id){
 			console.error("Error setting the rolling speed. The speed is a number from 1 to 30. '"+speed+"' given.");
 			return false;
 		};
+		this.addRollSpeed=function(speed_add){
+			if("number"==typeof speed_add && roll_coe+speed_add<=30){
+				roll_coe+=speed_add;
+				return true;
+			}
+			return false;
+		};
 		this.getRollingSpeed=function(){
 			return roll_coe;
 		};
@@ -122,6 +131,13 @@ function DogeBall(id){
 				return true;
 			}
 			console.error("Error setting the moving speed. The speed is a number from 1 to 30. '"+speed+"' given.");
+			return false;
+		};
+		this.addMovingSpeed=function(speed_add){
+			if("number"==typeof speed_add && moving_worker.speed+speed_add<=30){
+				moving_worker.speed+=speed_add;
+				return true;
+			}
 			return false;
 		};
 		this.addCollisionListener=function(obj){
