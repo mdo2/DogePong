@@ -45,6 +45,20 @@ function PlayerBarController(type){
 		
 	}	
 	
+	this.reset=function(){
+		if(local){
+			source.removeEventListener("keydown",processEvent);
+			source.removeEventListener("keyup",processEvent);
+			source.removeEventListener("touchstart",registerTouchId);
+			source.removeEventListener("touchend",unsetTouchId);
+			source.removeEventListener("touchmove",processEvent);
+		}
+		//Configuracion si el controlador es remoto
+		else if(remote){
+			
+		}	
+	};
+	
 	function processEvent(ev){
 		if(local){
 			var code=ev.keyCode;

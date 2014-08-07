@@ -51,6 +51,10 @@ function PlayerBarWorker(texture,zone,controller){
 			}
 		}
 		
+		this.reset=function(){
+			stopMove(dir);
+		};
+		
 		controller.addEventListener("startMove",startMove);
 		controller.addEventListener("stopMove",stopMove);
 		

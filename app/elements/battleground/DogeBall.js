@@ -26,7 +26,7 @@ function DogeBall(id){
 			if(dbz && "function"==typeof dbz.addSon){
 				dogeball_texture.move(
 					(dbz.getPosition().x+(dbz.getSize().width/2))-dogeball_texture.getSize().width/2,
-					(dbz.getPosition().y+(dbz.getSize().height/2))-dogeball_texture.getSize().height/2
+					(dbz.getPosition().y+(dbz.getSize().height/2))-dogeball_texture.getSize().height/2-25
 				);
 				ball_zone=dbz;
 				moving_worker=new DogeBallWorker(dogeball_texture,ball_zone);
@@ -35,6 +35,15 @@ function DogeBall(id){
 			console.error("Error setting the DogeBallZone to the object given. The object must be a texture.");
 			return false;
 		}
+		
+		this.reset=function(){
+			this.stopRolling();
+			this.stopMoving();
+			dogeball_texture.move(
+				(ball_zone.getPosition().x+(ball_zone.getSize().width/2))-dogeball_texture.getSize().width/2,
+				(ball_zone.getPosition().y+(ball_zone.getSize().height/2))-dogeball_texture.getSize().height/2-25
+			);
+		};
 		
 		//Rolling
 		this.setRollSense=function(sense){

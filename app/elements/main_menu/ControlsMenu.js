@@ -18,7 +18,7 @@ function ControlsMenu(id){
 			});
 			this.boton_jugar.setSize(150,50);
 			this.boton_jugar.setPosition(325,300);
-			background_texture.addSon(this.boton_jugar.getTexture());
+			// background_texture.addSon(this.boton_jugar.getTexture());
 			
 			//Boton volver
 			this.back_button=new Button("back_button",{
@@ -30,7 +30,7 @@ function ControlsMenu(id){
 			this.back_button.setSize(40,30);
 			this.back_button.setPosition(20,350);
 			// this.back_button.addListener(function(){});
-			background_texture.addSon(this.back_button.getTexture());
+			// background_texture.addSon(this.back_button.getTexture());
 						
 			//Title
 			var doge_text=new TextTexture("menu_title_doge",{
@@ -98,8 +98,11 @@ function ControlsMenu(id){
 	this.onAnimationEnds;
 	
 	this.renderMenu=function(){
+		background_texture.addSon(this.back_button.getTexture());
+		background_texture.addSon(this.boton_jugar.getTexture());
 		this.boton_jugar.init();
 		this.back_button.init();
+		background_texture.setDoge(0,350);
 		background_texture.render();
 	};
 	

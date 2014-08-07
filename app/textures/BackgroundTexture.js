@@ -7,7 +7,7 @@
 	Last update: 2014/03/14
 */
 
-function BackgroundTexture(id,context,opciones){
+function BackgroundTexture(id,opciones){
 	//Extendemos de la clase Texture
 	var texture=new Texture(id);
 	if("undefined"==typeof texture)
@@ -15,6 +15,8 @@ function BackgroundTexture(id,context,opciones){
 	for(var x in texture)
 		this[x]=texture[x];
 	var that=this;
+	
+	var context=DogePongGlobals.prototype.context;
 	
 	//Propiedades
 	this.setSize(800,400);
@@ -30,8 +32,8 @@ function BackgroundTexture(id,context,opciones){
 		var position=that.getPosition();
 		var size=that.getSize();
 		//Rectangulo
-			// context.fillStyle=that.background_color;
-			// context.fillRect(position.x,position.y,size.width,size.height);
+			// context.strokeStyle=that.background_color;
+			// context.strokeRect(position.x,position.y,size.width,size.height);
 		return true;
 	};
 }

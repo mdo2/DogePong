@@ -11,10 +11,13 @@ function PlayerBar(id,type){
 		orientation:(type=="left"?"left":"right")
 	});
 	if(type=="right")
-		texture.move(765,125);
+		texture.move(765,150);
 	
 	var zone;
 	
+		//Controller
+		var controller;
+		
 		//Worker
 		var worker;
 
@@ -34,10 +37,18 @@ function PlayerBar(id,type){
 	}
 	
 		//Controller
-		this.setController=function(controller){
+		this.setController=function(ctr){
+			controller=ctr;
 			controller.setTexture(texture);
 			worker=new PlayerBarWorker(texture,zone,controller);
 		}
+		
+		this.reset=function(){
+			controller.reset();
+			worker.reset();
+			delete controller;
+			delete worker;
+		};
 	
 		//Getters y Setters
 		
@@ -78,5 +89,15 @@ function PlayerBar(id,type){
 			};
 			this.getOrientation=function(){
 				return texture.orientation;
+			};
+			
+			//Size
+			this.getSize=function(){
+				return texture.getSize();
+			};
+			
+			//Position
+			this.getPosition=function(){
+				return texture.getPosition();
 			};
 }

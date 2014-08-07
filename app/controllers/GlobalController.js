@@ -36,7 +36,6 @@ function GlobalController(source){
 				ev.offsetY=el.pageY-11;
 				el.offsetX=el.pageX-11;
 				el.offsetY=el.pageY-11;
-				console.log(el);
 			}
 		}
 		var type=ev.type;
@@ -73,7 +72,7 @@ function GlobalController(source){
 			var index=list.indexOf(handler);
 			if(index>=0)
 				return delete list[index];
-			console.error("Error removing event handler of type "+type+". The handler given was not on the event list given.");
+			// console.error("Error removing event handler of type "+type+". The handler given was not on the event list given.");
 			return false;
 		}
 		console.error("Error removing event handler of type "+type+". Global Controller do not fire that type of event");

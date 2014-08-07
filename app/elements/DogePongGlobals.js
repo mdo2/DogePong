@@ -25,3 +25,5 @@ DogePongGlobals.prototype.refresh_time;
 	DogePongGlobals.prototype.dogeball_img;
 	
 	DogePongGlobals.prototype.battleground;
+	
+	DogePongGlobals.prototype.app_menu;

@@ -19,8 +19,8 @@ function BarZoneTexture(id,opciones){
 	//Propiedades
 	var context=DogePongGlobals.prototype.context;
 	
-	this.move(0,0);
-	this.setSize(35,400);
+	this.move(0,50);
+	this.setSize(35,350);
 	this.background_color="silver";
 	
 	//Aplicamos las opciones pasadas como parametro

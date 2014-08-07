@@ -3,7 +3,7 @@
 */
 #dogepong_canvas{
 	color: transparent;
-	border: solid 1px silver;
+	border: solid 1px black;
 }
 #dogepong_canvas:focus{
 	outline:none;

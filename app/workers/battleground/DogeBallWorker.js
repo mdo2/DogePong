@@ -13,7 +13,7 @@ function DogeBallWorker(texture,zone){
 	
 	var x_min=zone.getPosition().x+0.5;
 	var x_max=zone.getPosition().x+zone.getSize().width;
-	var y_min=zone.getPosition().y;
+	var y_min=zone.getPosition().y+1;
 	var y_max=zone.getPosition().y+zone.getSize().height;
 	
 	var size=texture.getSize();
@@ -43,6 +43,7 @@ function DogeBallWorker(texture,zone){
 					x1_aux=(x_max-(speed-(x_max-x2)))-size.width;
 					that.direction=(dir==1?4:3);
 				}
+				fireOnBallCollision();
 			}
 			//Comprobamos que la bola no rebasaria los limites verticales
 			if(y1_aux<y_min || y2_aux>y_max){
@@ -61,4 +62,9 @@ function DogeBallWorker(texture,zone){
 		this.isMoving=function(){
 			return that.move_interval_id!=0;
 		};
+		
+	function fireOnBallCollision(){
+		for(var cont=0;cont<that.listeners.length;cont++)
+			that.listeners[cont].onBallCollision(that.direction<3?1:2,texture.getPosition().y+(texture.getSize().height/2));
+	}
 }

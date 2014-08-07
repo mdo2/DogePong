@@ -19,9 +19,12 @@ function CenterZoneTexture(id,opciones){
 	//Propiedades
 	var context=DogePongGlobals.prototype.context;
 	
-	this.move(35,0);
-	this.setSize(730,400);
+	this.move(35,50);
+	this.setSize(730,350);
 	this.background_color="silver";
+	
+	this.text_color="black";
+	this.text="TEXTO DE PRUEBA";
 	
 	//Aplicamos las opciones pasadas como parametro
 	for(x in opciones)

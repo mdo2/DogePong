@@ -26,7 +26,10 @@ function AppMenu(){
 		
 		menus["controls_menu"]=new ControlsMenu("controls_menu");
 		menus["controls_menu"].back_button.addListener(function(){that.renderMenu("main_menu");});
-		menus["controls_menu"].onAnimationEnds=function(){DogePongGlobals.prototype.battleground.renderBattleground();};
+		menus["controls_menu"].onAnimationEnds=function(){
+			DogePongGlobals.prototype.battleground.renderBattleground();
+			DogePongGlobals.prototype.battleground.startGame();
+		};
 		
 		
 		var actual_menu=menus["main_menu"];

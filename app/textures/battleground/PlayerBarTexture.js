@@ -19,8 +19,8 @@ function PlayerBarTexture(id,opciones){
 	//Propiedades
 	var context=DogePongGlobals.prototype.context;
 	
-	this.move(5,125);
-	this.setSize(30,150);
+	this.move(5,150);
+	this.setSize(30,130);
 	this.line_color="black";
 	this.text_color="red";
 	this.text="WOW DOGE!!";

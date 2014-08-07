@@ -26,6 +26,7 @@
 	var app_menu=new AppMenu();
 	app_menu.init();
 	app_menu.start();
+	globals.prototype.app_menu=app_menu;
 	
 	globals.prototype.battleground=new Battleground();
 	
