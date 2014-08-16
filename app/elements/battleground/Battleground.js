@@ -11,7 +11,7 @@ function Battleground(){
 	var center_zone;
 	var score_bar;
 	
-	var goles=10;
+	var goles=5;
 	var max_speed=30;
 	var speed_mark=0;
 	
